@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: bf0ad2ef84b114eaf9415c596d30ab14
+timeCreated: 1447795664
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: chest
+    100004: head
+    100006: hip
+    100008: leftElbow
+    100010: leftFoot
+    100012: leftKnee
+    100014: leftLeg
+    100016: leftShoulder
+    100018: leftWrist
+    100020: neck
+    100022: pCube11
+    100024: rightElbow
+    100026: rightFoot
+    100028: rightKnee
+    100030: rightLeg
+    100032: rightShoulder
+    100034: rightWrist
+    100036: torso
+    400000: //RootNode
+    400002: chest
+    400004: head
+    400006: hip
+    400008: leftElbow
+    400010: leftFoot
+    400012: leftKnee
+    400014: leftLeg
+    400016: leftShoulder
+    400018: leftWrist
+    400020: neck
+    400022: pCube11
+    400024: rightElbow
+    400026: rightFoot
+    400028: rightKnee
+    400030: rightLeg
+    400032: rightShoulder
+    400034: rightWrist
+    400036: torso
+    4300000: pCube11
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: pCube11
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: hip
+        weight: 1
+      - path: hip/leftLeg
+        weight: 1
+      - path: hip/leftLeg/leftKnee
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftFoot
+        weight: 1
+      - path: hip/rightLeg
+        weight: 1
+      - path: hip/rightLeg/rightKnee
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightFoot
+        weight: 1
+      - path: hip/torso
+        weight: 1
+      - path: hip/torso/chest
+        weight: 1
+      - path: hip/torso/chest/leftShoulder
+        weight: 1
+      - path: hip/torso/chest/leftShoulder/leftElbow
+        weight: 1
+      - path: hip/torso/chest/leftShoulder/leftElbow/leftWrist
+        weight: 1
+      - path: hip/torso/chest/neck
+        weight: 1
+      - path: hip/torso/chest/neck/head
+        weight: 1
+      - path: hip/torso/chest/rightShoulder
+        weight: 1
+      - path: hip/torso/chest/rightShoulder/rightElbow
+        weight: 1
+      - path: hip/torso/chest/rightShoulder/rightElbow/rightWrist
+        weight: 1
+      - path: pCube11
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

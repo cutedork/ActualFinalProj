@@ -1,0 +1,330 @@
+fileFormatVersion: 2
+guid: 7f72229d527ec480c991203abe8e950d
+timeCreated: 1447962170
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: chest
+    100002: chest1
+    100004: core
+    100006: group
+    100008: head
+    100010: head1
+    100012: leftArm
+    100014: leftElbow
+    100016: leftFoot
+    100018: leftHand
+    100020: leftHip
+    100022: leftKnee
+    100024: leftLeg
+    100026: leftShoulder
+    100028: neck
+    100030: neck1
+    100032: pasted__chest1
+    100034: pasted__core
+    100036: pasted__rightArm
+    100038: pasted__rightElbow
+    100040: pasted__rightHand
+    100042: pasted__rightShoulder
+    100044: pasted__torso
+    100046: //RootNode
+    100048: polySurface1
+    100050: rightArm
+    100052: rightElbow
+    100054: rightFoot
+    100056: rightHand
+    100058: rightHip
+    100060: rightKnee
+    100062: rightLeg
+    100064: rightShoulder
+    100066: torso
+    400000: chest
+    400002: chest1
+    400004: core
+    400006: group
+    400008: head
+    400010: head1
+    400012: leftArm
+    400014: leftElbow
+    400016: leftFoot
+    400018: leftHand
+    400020: leftHip
+    400022: leftKnee
+    400024: leftLeg
+    400026: leftShoulder
+    400028: neck
+    400030: neck1
+    400032: pasted__chest1
+    400034: pasted__core
+    400036: pasted__rightArm
+    400038: pasted__rightElbow
+    400040: pasted__rightHand
+    400042: pasted__rightShoulder
+    400044: pasted__torso
+    400046: //RootNode
+    400048: polySurface1
+    400050: rightArm
+    400052: rightElbow
+    400054: rightFoot
+    400056: rightHand
+    400058: rightHip
+    400060: rightKnee
+    400062: rightLeg
+    400064: rightShoulder
+    400066: torso
+    4300000: polySurface1
+    7400000: ArmFlail
+    7400002: IdlePose
+    9500000: //RootNode
+    13700000: polySurface1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: ArmFlail
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: core
+        weight: 1
+      - path: core/leftLeg
+        weight: 1
+      - path: core/leftLeg/leftHip
+        weight: 1
+      - path: core/leftLeg/leftHip/leftKnee
+        weight: 1
+      - path: core/leftLeg/leftHip/leftKnee/leftFoot
+        weight: 1
+      - path: core/rightLeg
+        weight: 1
+      - path: core/rightLeg/rightHip
+        weight: 1
+      - path: core/rightLeg/rightHip/rightKnee
+        weight: 1
+      - path: core/rightLeg/rightHip/rightKnee/rightFoot
+        weight: 1
+      - path: core/torso
+        weight: 1
+      - path: core/torso/chest
+        weight: 1
+      - path: core/torso/chest/leftShoulder
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm/leftElbow
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm/leftElbow/leftHand
+        weight: 1
+      - path: core/torso/chest/neck
+        weight: 1
+      - path: core/torso/chest/neck/head
+        weight: 1
+      - path: core/torso/chest1
+        weight: 1
+      - path: core/torso/chest1/neck1
+        weight: 1
+      - path: core/torso/chest1/neck1/head1
+        weight: 1
+      - path: core/torso/chest1/rightShoulder
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm/rightElbow
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm/rightElbow/rightHand
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__core
+        weight: 1
+      - path: group/pasted__core/pasted__torso
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder/pasted__rightArm
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder/pasted__rightArm/pasted__rightElbow
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder/pasted__rightArm/pasted__rightElbow/pasted__rightHand
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: IdlePose
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: core
+        weight: 1
+      - path: core/leftLeg
+        weight: 1
+      - path: core/leftLeg/leftHip
+        weight: 1
+      - path: core/leftLeg/leftHip/leftKnee
+        weight: 1
+      - path: core/leftLeg/leftHip/leftKnee/leftFoot
+        weight: 1
+      - path: core/rightLeg
+        weight: 1
+      - path: core/rightLeg/rightHip
+        weight: 1
+      - path: core/rightLeg/rightHip/rightKnee
+        weight: 1
+      - path: core/rightLeg/rightHip/rightKnee/rightFoot
+        weight: 1
+      - path: core/torso
+        weight: 1
+      - path: core/torso/chest
+        weight: 1
+      - path: core/torso/chest/leftShoulder
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm/leftElbow
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm/leftElbow/leftHand
+        weight: 1
+      - path: core/torso/chest/neck
+        weight: 1
+      - path: core/torso/chest/neck/head
+        weight: 1
+      - path: core/torso/chest1
+        weight: 1
+      - path: core/torso/chest1/neck1
+        weight: 1
+      - path: core/torso/chest1/neck1/head1
+        weight: 1
+      - path: core/torso/chest1/rightShoulder
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm/rightElbow
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm/rightElbow/rightHand
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__core
+        weight: 1
+      - path: group/pasted__core/pasted__torso
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder/pasted__rightArm
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder/pasted__rightArm/pasted__rightElbow
+        weight: 1
+      - path: group/pasted__core/pasted__torso/pasted__chest1/pasted__rightShoulder/pasted__rightArm/pasted__rightElbow/pasted__rightHand
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

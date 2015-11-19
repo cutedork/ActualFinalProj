@@ -17,13 +17,13 @@ public class ArmAttack : MonoBehaviour {
 
 
 #if UNITY_STANDALONE_OSX
-		if (Input.GetButton ("LeftBumper_OSX")) {
+		if (Input.GetButton ("LeftBumper_OSX") || Input.GetKey (KeyCode.Q)) {
 			leftShoulder.transform.Rotate(10f, 0f, 0f);
 		}
 #endif
 
 #if UNITY_STANDALONE_OSX
-		if (Input.GetButton ("RightBumper_OSX")) {
+		if (Input.GetButton ("RightBumper_OSX") || Input.GetKey (KeyCode.E)) {
 			rightShoulder.transform.Rotate(-10f, 0f, 0f);
 		}
 #endif

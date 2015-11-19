@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: 8eb44d43f020849e38138a462323f36e
+timeCreated: 1447961841
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: chest
+    100002: chest1
+    100004: core
+    100006: head
+    100008: head1
+    100010: leftArm
+    100012: leftElbow
+    100014: leftFoot
+    100016: leftHand
+    100018: leftHip
+    100020: leftKnee
+    100022: leftLeg
+    100024: leftShoulder
+    100026: neck
+    100028: neck1
+    100030: //RootNode
+    100032: polySurface1
+    100034: rightArm
+    100036: rightElbow
+    100038: rightFoot
+    100040: rightHand
+    100042: rightHip
+    100044: rightKnee
+    100046: rightLeg
+    100048: rightShoulder
+    100050: torso
+    400000: chest
+    400002: chest1
+    400004: core
+    400006: head
+    400008: head1
+    400010: leftArm
+    400012: leftElbow
+    400014: leftFoot
+    400016: leftHand
+    400018: leftHip
+    400020: leftKnee
+    400022: leftLeg
+    400024: leftShoulder
+    400026: neck
+    400028: neck1
+    400030: //RootNode
+    400032: polySurface1
+    400034: rightArm
+    400036: rightElbow
+    400038: rightFoot
+    400040: rightHand
+    400042: rightHip
+    400044: rightKnee
+    400046: rightLeg
+    400048: rightShoulder
+    400050: torso
+    4300000: polySurface1
+    7400000: armFlailing
+    9500000: //RootNode
+    13700000: polySurface1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: armFlailing
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: core
+        weight: 1
+      - path: core/leftLeg
+        weight: 1
+      - path: core/leftLeg/leftHip
+        weight: 1
+      - path: core/leftLeg/leftHip/leftKnee
+        weight: 1
+      - path: core/leftLeg/leftHip/leftKnee/leftFoot
+        weight: 1
+      - path: core/rightLeg
+        weight: 1
+      - path: core/rightLeg/rightHip
+        weight: 1
+      - path: core/rightLeg/rightHip/rightKnee
+        weight: 1
+      - path: core/rightLeg/rightHip/rightKnee/rightFoot
+        weight: 1
+      - path: core/torso
+        weight: 1
+      - path: core/torso/chest
+        weight: 1
+      - path: core/torso/chest/leftShoulder
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm/leftElbow
+        weight: 1
+      - path: core/torso/chest/leftShoulder/leftArm/leftElbow/leftHand
+        weight: 1
+      - path: core/torso/chest/neck
+        weight: 1
+      - path: core/torso/chest/neck/head
+        weight: 1
+      - path: core/torso/chest1
+        weight: 1
+      - path: core/torso/chest1/neck1
+        weight: 1
+      - path: core/torso/chest1/neck1/head1
+        weight: 1
+      - path: core/torso/chest1/rightShoulder
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm/rightElbow
+        weight: 1
+      - path: core/torso/chest1/rightShoulder/rightArm/rightElbow/rightHand
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
