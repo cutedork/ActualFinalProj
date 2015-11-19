@@ -5,23 +5,75 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 	
 {
-	private Vector3 movementVector;
-	private CharacterController characterController;
-	private float movementSpeed = 16; // 8
-	private float jumpPower = 15;
-	private float gravity = 40;
+
+	public GameObject topCharacter;
+	
+	Vector3 movementVector;
+	CharacterController characterController;
+	float movementSpeed = 16; // 8
+	float jumpPower = 15;
+	float gravity = 40;
+
+	Animator topPlayerAnimator;
+	bool playAnim;
 	
 	
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
+		topPlayerAnimator = topCharacter.GetComponent<Animator>();
+		playAnim = false;
 	}
 	
 	
 	void Update()
 	{
-		Debug.Log (Input.GetAxis ("LeftJoystickX"));
-		Debug.Log (Input.GetAxis ("LeftJoystickY"));
+		movementVector = new Vector3 (0f, movementVector.y, 0f);
+
+		//Movement direction
+		if (Input.GetKey (KeyCode.W)) {
+			movementVector += transform.forward * movementSpeed;
+		}
+		if (Input.GetKey (KeyCode.S)) {
+			movementVector += -transform.forward * movementSpeed;
+		} 
+		
+		if (Input.GetKey (KeyCode.A)) {
+			movementVector += -transform.right * movementSpeed;
+		} 
+		if (Input.GetKey (KeyCode.D)) {
+			movementVector += transform.right * movementSpeed;
+		} 
+
+		if (Input.GetKey (KeyCode.Q)) {
+			transform.Rotate(0f, 10f, 0f);
+		}
+
+		if (Input.GetKey (KeyCode.E)) {
+			transform.Rotate(0f, -10f, 0f);
+		}
+
+		if(characterController.isGrounded)
+		{
+			movementVector.y = 0;
+			if(Input.GetKeyDown (KeyCode.Z))
+			{
+				movementVector.y = jumpPower;
+			}
+			
+		}
+
+		if (Input.GetKeyDown(KeyCode.X)) {
+			playAnim = !playAnim;
+		} 
+		
+		topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
+
+		movementVector.y -= gravity * Time.deltaTime;
+		characterController.Move(movementVector * Time.deltaTime);
+
+		// Debug.Log (Input.GetAxis ("LeftJoystickX"));
+		// Debug.Log (Input.GetAxis ("LeftJoystickY"));
 
 		/* This doesn't work as well as I hoped
 		if (Input.GetAxis ("LeftJoystickX") > 0) {
@@ -35,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		*/
 
+		/*
 		movementVector.x = Input.GetAxis("LeftJoystickX") * movementSpeed;
 		movementVector.z = Input.GetAxis("LeftJoystickY") * movementSpeed * -1f;
 
@@ -85,7 +138,9 @@ public class PlayerMovement : MonoBehaviour
 			transform.Rotate(0f, -10f, 0f);
 		}
 #endif
-		
+		*/
+
+
 	}
 	
 }
