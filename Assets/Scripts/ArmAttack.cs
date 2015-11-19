@@ -27,6 +27,19 @@ public class ArmAttack : MonoBehaviour {
 			rightShoulder.transform.Rotate(-10f, 0f, 0f);
 		}
 #endif
+
+#if UNITY_STANDALONE_WIN
+		if (Input.GetButton ("X")) {
+			leftShoulder.transform.Rotate(10f, 0f, 0f);
+		}
+#endif
+		
+#if UNITY_STANDALONE_WIN
+		if (Input.GetButton ("Y")) {
+			rightShoulder.transform.Rotate(-10f, 0f, 0f);
+		}
+#endif
+
 	
 	}
 }
