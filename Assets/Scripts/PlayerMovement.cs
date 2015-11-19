@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	Vector3 movementVector;
 	CharacterController characterController;
-	float movementSpeed = 16; // 8
+	float movementSpeed = 32; // 8
 	float jumpPower = 15;
 	float gravity = 40;
 
