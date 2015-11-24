@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -7,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
 	public GameObject topCharacter;
-	
+	public int playerNumber;
+
 	Vector3 movementVector;
 	CharacterController characterController;
 	float movementSpeed = 32; // 8
@@ -16,65 +18,88 @@ public class PlayerMovement : MonoBehaviour
 
 	Animator topPlayerAnimator;
 	bool playAnim;
-	
-	
+	List<KeyCode> playerKeys;
+
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
 		topPlayerAnimator = topCharacter.GetComponent<Animator>();
 		playAnim = false;
+		if (playerNumber == 1) {
+			playerKeys = new List<KeyCode> (new KeyCode[] {
+				KeyCode.W,
+				KeyCode.A,
+				KeyCode.S,
+				KeyCode.D,
+				KeyCode.Q,
+				KeyCode.E,
+				KeyCode.Z,
+				KeyCode.X
+			});
+		} else {
+			playerKeys = new List<KeyCode> (new KeyCode[] {
+				KeyCode.I,
+				KeyCode.J,
+				KeyCode.K,
+				KeyCode.L,
+				KeyCode.U,
+				KeyCode.O,
+				KeyCode.M,
+				KeyCode.Comma
+			});
+		}
 	}
-	
-	
+		
 	void Update()
 	{
 		movementVector = new Vector3 (0f, movementVector.y, 0f);
 
-		//Movement direction
-		if (Input.GetKey (KeyCode.W)) {
+		//Movement direction FORWARD, BACK, LEFT, RIGHT
+		if (Input.GetKey (playerKeys[0])) {
 			movementVector += transform.forward * movementSpeed;
 		}
-		if (Input.GetKey (KeyCode.S)) {
-			movementVector += -transform.forward * movementSpeed;
-		} 
-		
-		if (Input.GetKey (KeyCode.A)) {
+		if (Input.GetKey (playerKeys[1])) {
 			movementVector += -transform.right * movementSpeed;
 		} 
-		if (Input.GetKey (KeyCode.D)) {
+		if (Input.GetKey (playerKeys[2])) {
+			movementVector += -transform.forward * movementSpeed;
+		} 
+		if (Input.GetKey (playerKeys[3])) {
 			movementVector += transform.right * movementSpeed;
 		} 
 
-		if (Input.GetKey (KeyCode.Q)) {
+		//Player rotation CLOCKWISE, COUNTERCLOCKWISE
+		if (Input.GetKey (playerKeys[4])) {
 			transform.Rotate(0f, 10f, 0f);
 		}
-
-		if (Input.GetKey (KeyCode.E)) {
+		if (Input.GetKey (playerKeys[5])) {
 			transform.Rotate(0f, -10f, 0f);
 		}
 
+		//Jump Logic CHECK IF GROUNDED, IF NOT APPLY JUMP POWER
 		if(characterController.isGrounded)
 		{
 			movementVector.y = 0;
-			if(Input.GetKeyDown (KeyCode.Z))
+			if(Input.GetKeyDown (playerKeys[6]))
 			{
 				movementVector.y = jumpPower;
 			}
 			
 		}
 
-		if (Input.GetKeyDown(KeyCode.X)) {
+		//Attack Logic PLAY ANIMATION TO ATTACK
+		if (Input.GetKeyDown(playerKeys[7])) {
 			playAnim = !playAnim;
 		} 
-		
 		topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
 
+		//Apply final movement vector
 		movementVector.y -= gravity * Time.deltaTime;
 		characterController.Move(movementVector * Time.deltaTime);
 
+
 		// Debug.Log (Input.GetAxis ("LeftJoystickX"));
 		// Debug.Log (Input.GetAxis ("LeftJoystickY"));
-
 		/* This doesn't work as well as I hoped
 		if (Input.GetAxis ("LeftJoystickX") > 0) {
 			movementVector += -transform.right * Input.GetAxis ("LeftJoystickX") * movementSpeed * -1f;
@@ -86,13 +111,10 @@ public class PlayerMovement : MonoBehaviour
 			movementVector += transform.forward * Input.GetAxis ("LeftJoystickY") * movementSpeed * -1f;
 		}
 		*/
-
 		/*
 		movementVector.x = Input.GetAxis("LeftJoystickX") * movementSpeed;
 		movementVector.z = Input.GetAxis("LeftJoystickY") * movementSpeed * -1f;
 
-
-	
 		if(characterController.isGrounded)
 		{
 			movementVector.y = 0;
@@ -139,7 +161,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 #endif
 		*/
-
 
 	}
 	
