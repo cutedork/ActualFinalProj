@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 		
 		topPlayerAnimator.SetBool("IsAttacking", true);
 		
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 		
 		topPlayerAnimator.SetBool("IsAttacking", false);
 		
