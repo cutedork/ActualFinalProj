@@ -17,14 +17,14 @@ public class PlayerMovement : MonoBehaviour
 	float gravity = 40;
 
 	Animator topPlayerAnimator;
-	bool playAnim;
+	//bool playAnim;
 	List<KeyCode> playerKeys;
 
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
 		topPlayerAnimator = topCharacter.GetComponent<Animator>();
-		playAnim = false;
+		//playAnim = false;
 		if (playerNumber == 1) {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
 				KeyCode.W,
@@ -89,9 +89,10 @@ public class PlayerMovement : MonoBehaviour
 
 		//Attack Logic PLAY ANIMATION TO ATTACK
 		if (Input.GetKeyDown(playerKeys[7])) {
-			playAnim = !playAnim;
+			//playAnim = !playAnim;
+			StartCoroutine("Attack");
 		} 
-		topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
+		//topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
 
 		//Apply final movement vector
 		movementVector.y -= gravity * Time.deltaTime;
@@ -162,6 +163,16 @@ public class PlayerMovement : MonoBehaviour
 #endif
 		*/
 
+	}
+
+	public IEnumerator Attack () {
+		
+		topPlayerAnimator.SetBool("IsAttacking", true);
+		
+		yield return new WaitForSeconds(1f);
+		
+		topPlayerAnimator.SetBool("IsAttacking", false);
+		
 	}
 	
 }
