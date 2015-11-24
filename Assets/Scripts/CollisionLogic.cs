@@ -26,13 +26,14 @@ public class CollisionLogic : MonoBehaviour {
 		// LITERALLY. HARDCODING.
 		// two arms = this is being calling twice LOL #goodenough
 		if (collision.gameObject.name == colliderName) {
-			//lastTimeHit = Time.time;
-			//Debug.Log (lastTimeHit);
-			//Debug.Log (Time.time);
-			//if (Time.time - lastTimeHit > 1){
+			Debug.Log (lastTimeHit);
+			Debug.Log (Time.time);
+			if (Time.time - lastTimeHit > 1){
 				string testString = "Ouch from " + playerNumber.ToString();
 				Debug.Log (testString);
 				hitcount--;
+
+				lastTimeHit = Time.time;
 
 				if (hitcount <= 0){
 					Debug.Log ("WTF?!");
@@ -40,7 +41,7 @@ public class CollisionLogic : MonoBehaviour {
 					GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 					GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
 				}
-			//}
+			}
 		}
 	}
 	
