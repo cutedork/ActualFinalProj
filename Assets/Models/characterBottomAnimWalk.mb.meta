@@ -1,0 +1,246 @@
+fileFormatVersion: 2
+guid: 7e7e2106a80f94c0098c7cc50e5992e5
+timeCreated: 1448397086
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: chest
+    100004: head
+    100006: hip
+    100008: leftAnkle
+    100010: leftFoot
+    100012: leftKnee
+    100014: leftLeg
+    100016: leftShoulder
+    100018: leftWing
+    100020: neck
+    100022: pSphere15
+    100024: rightAnkle
+    100026: rightFoot
+    100028: rightKnee
+    100030: rightLeg
+    100032: rightShoulder
+    100034: rightWing
+    100036: tailBone
+    100038: tailTip
+    400000: //RootNode
+    400002: chest
+    400004: head
+    400006: hip
+    400008: leftAnkle
+    400010: leftFoot
+    400012: leftKnee
+    400014: leftLeg
+    400016: leftShoulder
+    400018: leftWing
+    400020: neck
+    400022: pSphere15
+    400024: rightAnkle
+    400026: rightFoot
+    400028: rightKnee
+    400030: rightLeg
+    400032: rightShoulder
+    400034: rightWing
+    400036: tailBone
+    400038: tailTip
+    4300000: pSphere15
+    7400000: Walk
+    7400002: Idle
+    9500000: //RootNode
+    13700000: pSphere15
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: hip
+        weight: 1
+      - path: hip/chest
+        weight: 1
+      - path: hip/chest/leftShoulder
+        weight: 1
+      - path: hip/chest/leftShoulder/leftWing
+        weight: 1
+      - path: hip/chest/neck
+        weight: 1
+      - path: hip/chest/neck/head
+        weight: 1
+      - path: hip/chest/rightShoulder
+        weight: 1
+      - path: hip/chest/rightShoulder/rightWing
+        weight: 1
+      - path: hip/leftLeg
+        weight: 1
+      - path: hip/leftLeg/leftKnee
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftAnkle
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftAnkle/leftFoot
+        weight: 1
+      - path: hip/rightLeg
+        weight: 1
+      - path: hip/rightLeg/rightKnee
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightAnkle
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightAnkle/rightFoot
+        weight: 1
+      - path: hip/tailBone
+        weight: 1
+      - path: hip/tailBone/tailTip
+        weight: 1
+      - path: pSphere15
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: hip
+        weight: 1
+      - path: hip/chest
+        weight: 1
+      - path: hip/chest/leftShoulder
+        weight: 1
+      - path: hip/chest/leftShoulder/leftWing
+        weight: 1
+      - path: hip/chest/neck
+        weight: 1
+      - path: hip/chest/neck/head
+        weight: 1
+      - path: hip/chest/rightShoulder
+        weight: 1
+      - path: hip/chest/rightShoulder/rightWing
+        weight: 1
+      - path: hip/leftLeg
+        weight: 1
+      - path: hip/leftLeg/leftKnee
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftAnkle
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftAnkle/leftFoot
+        weight: 1
+      - path: hip/rightLeg
+        weight: 1
+      - path: hip/rightLeg/rightKnee
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightAnkle
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightAnkle/rightFoot
+        weight: 1
+      - path: hip/tailBone
+        weight: 1
+      - path: hip/tailBone/tailTip
+        weight: 1
+      - path: pSphere15
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
