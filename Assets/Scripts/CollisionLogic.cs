@@ -10,6 +10,7 @@ public class CollisionLogic : MonoBehaviour {
 	int hitcount;
 	string colliderName;
 	float lastTimeHit;
+	bool endGame;
 
 	void Start(){
 		// literally hardcoding, I'll rewrite this later for non-prototype
@@ -20,6 +21,7 @@ public class CollisionLogic : MonoBehaviour {
 		}
 		lastTimeHit = 0f;
 		hitcount = 3;
+		endGame = false;
 	}
 
 	void OnTriggerEnter(Collider collision){
@@ -40,9 +42,21 @@ public class CollisionLogic : MonoBehaviour {
 					// knock top player off... somehow
 					GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 					GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
+
+					if (endGame == false){
+						endGame = true;
+						StartCoroutine("EndGame");
+					}
+					//Application.LoadLevel(2);
 				}
 			}
 		}
+	}
+
+	public IEnumerator EndGame()
+	{
+		yield return new WaitForSeconds(1f);
+		Application.LoadLevel(2);
 	}
 	
 }
