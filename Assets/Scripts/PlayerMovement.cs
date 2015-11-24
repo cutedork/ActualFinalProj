@@ -1,28 +1,105 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class PlayerMovement : MonoBehaviour
 	
 {
-	private Vector3 movementVector;
-	private CharacterController characterController;
-	private float movementSpeed = 16; // 8
-	private float jumpPower = 15;
-	private float gravity = 40;
-	
-	
+
+	public GameObject topCharacter;
+	public int playerNumber;
+
+	Vector3 movementVector;
+	CharacterController characterController;
+	float movementSpeed = 32; // 8
+	float jumpPower = 15;
+	float gravity = 40;
+
+	Animator topPlayerAnimator;
+	bool playAnim;
+	List<KeyCode> playerKeys;
+
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
+		topPlayerAnimator = topCharacter.GetComponent<Animator>();
+		playAnim = false;
+		if (playerNumber == 1) {
+			playerKeys = new List<KeyCode> (new KeyCode[] {
+				KeyCode.W,
+				KeyCode.A,
+				KeyCode.S,
+				KeyCode.D,
+				KeyCode.Q,
+				KeyCode.E,
+				KeyCode.Z,
+				KeyCode.X
+			});
+		} else {
+			playerKeys = new List<KeyCode> (new KeyCode[] {
+				KeyCode.I,
+				KeyCode.J,
+				KeyCode.K,
+				KeyCode.L,
+				KeyCode.U,
+				KeyCode.O,
+				KeyCode.M,
+				KeyCode.Comma
+			});
+		}
 	}
-	
-	
+		
 	void Update()
 	{
-		Debug.Log (Input.GetAxis ("LeftJoystickX"));
-		Debug.Log (Input.GetAxis ("LeftJoystickY"));
+		movementVector = new Vector3 (0f, movementVector.y, 0f);
 
+		//Movement direction FORWARD, BACK, LEFT, RIGHT
+		if (Input.GetKey (playerKeys[0])) {
+			movementVector += transform.forward * movementSpeed;
+		}
+		if (Input.GetKey (playerKeys[1])) {
+			movementVector += -transform.right * movementSpeed;
+		} 
+		if (Input.GetKey (playerKeys[2])) {
+			movementVector += -transform.forward * movementSpeed;
+		} 
+		if (Input.GetKey (playerKeys[3])) {
+			movementVector += transform.right * movementSpeed;
+		} 
+
+		//Player rotation CLOCKWISE, COUNTERCLOCKWISE
+		if (Input.GetKey (playerKeys[4])) {
+			transform.Rotate(0f, 10f, 0f);
+		}
+		if (Input.GetKey (playerKeys[5])) {
+			transform.Rotate(0f, -10f, 0f);
+		}
+
+		//Jump Logic CHECK IF GROUNDED, IF NOT APPLY JUMP POWER
+		if(characterController.isGrounded)
+		{
+			movementVector.y = 0;
+			if(Input.GetKeyDown (playerKeys[6]))
+			{
+				movementVector.y = jumpPower;
+			}
+			
+		}
+
+		//Attack Logic PLAY ANIMATION TO ATTACK
+		if (Input.GetKeyDown(playerKeys[7])) {
+			playAnim = !playAnim;
+		} 
+		topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
+
+		//Apply final movement vector
+		movementVector.y -= gravity * Time.deltaTime;
+		characterController.Move(movementVector * Time.deltaTime);
+
+
+		// Debug.Log (Input.GetAxis ("LeftJoystickX"));
+		// Debug.Log (Input.GetAxis ("LeftJoystickY"));
 		/* This doesn't work as well as I hoped
 		if (Input.GetAxis ("LeftJoystickX") > 0) {
 			movementVector += -transform.right * Input.GetAxis ("LeftJoystickX") * movementSpeed * -1f;
@@ -34,12 +111,10 @@ public class PlayerMovement : MonoBehaviour
 			movementVector += transform.forward * Input.GetAxis ("LeftJoystickY") * movementSpeed * -1f;
 		}
 		*/
-
+		/*
 		movementVector.x = Input.GetAxis("LeftJoystickX") * movementSpeed;
 		movementVector.z = Input.GetAxis("LeftJoystickY") * movementSpeed * -1f;
 
-
-	
 		if(characterController.isGrounded)
 		{
 			movementVector.y = 0;
@@ -85,7 +160,8 @@ public class PlayerMovement : MonoBehaviour
 			transform.Rotate(0f, -10f, 0f);
 		}
 #endif
-		
+		*/
+
 	}
 	
 }
