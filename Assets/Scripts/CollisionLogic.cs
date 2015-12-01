@@ -48,24 +48,20 @@ public class CollisionLogic : MonoBehaviour {
 				string testString = "Ouch from " + playerNumber.ToString();
 				Debug.Log (testString);
 				hitcount--;
-				if( isBall1Active == true && isBall2Active == true && isBall3Active == true)
+				if( hitcount == 2)
 				{
 					ball1.SetActive(false);
-					isBall1Active = false;
 				}
-				if(isBall1Active == false && isBall2Active == true && isBall3Active == true )
+				if( hitcount == 1 )
 				{
 					ball2.SetActive(false);
-					isBall2Active = false;
 
 				}
-				if(isBall1Active == false && isBall2Active == false && isBall3Active == true )
+				if(hitcount == 0)
 				{
 					ball3.SetActive(false);
-					isBall3Active = false;
 
 				}
-
 
 
 				lastTimeHit = Time.time;
