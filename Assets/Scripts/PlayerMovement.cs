@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject topCharacter;
 	public int playerNumber;
 
+	public GameObject bottomCharacter;
+
+
 	Vector3 movementVector;
 	CharacterController characterController;
 	float movementSpeed = 32; // 8
@@ -17,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
 	float gravity = 40;
 
 	Animator topPlayerAnimator;
+
+	Animator bottomPlayerAnimator;
+
 	//bool playAnim;
 	List<KeyCode> playerKeys;
 
@@ -24,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		characterController = GetComponent<CharacterController>();
 		topPlayerAnimator = topCharacter.GetComponent<Animator>();
+
+		bottomPlayerAnimator = bottomCharacter.GetComponent<Animator>();
+
 		//playAnim = false;
 		if (playerNumber == 1) {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
@@ -53,6 +62,19 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
 	{
 		movementVector = new Vector3 (0f, movementVector.y, 0f);
+
+		if ((Input.GetKey (playerKeys[0])) || 
+		    (Input.GetKey (playerKeys[1])) ||
+		    (Input.GetKey (playerKeys[2])) ||
+		    (Input.GetKey (playerKeys[3])) ||
+		    (Input.GetKey (playerKeys[4])) ||
+		    (Input.GetKey (playerKeys[5])) ) {
+			// StartCoroutine("Walk");
+
+		    bottomPlayerAnimator.SetBool("IsWalking", true);
+		} else {
+			bottomPlayerAnimator.SetBool("IsWalking", false);
+		}
 
 		//Movement direction FORWARD, BACK, LEFT, RIGHT
 		if (Input.GetKey (playerKeys[0])) {
@@ -169,10 +191,20 @@ public class PlayerMovement : MonoBehaviour
 		
 		topPlayerAnimator.SetBool("IsAttacking", true);
 		
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 		
 		topPlayerAnimator.SetBool("IsAttacking", false);
 		
 	}
+
+	//public IEnumerator Walk () {
+		
+		//bottomPlayerAnimator.SetBool("IsWalking", true);
+		
+		// yield return new WaitForSeconds(0.5f);
+		
+		// bottomPlayerAnimator.SetBool("IsWalking", false);
+		
+	//}
 	
 }
