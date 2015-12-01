@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CollisionLogic : MonoBehaviour {
 
@@ -11,6 +12,9 @@ public class CollisionLogic : MonoBehaviour {
 	string colliderName;
 	float lastTimeHit;
 	bool endGame;
+	public Text [] beachBalls;
+
+
 
 	void Start(){
 		// literally hardcoding, I'll rewrite this later for non-prototype
