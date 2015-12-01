@@ -1,55 +1,54 @@
 fileFormatVersion: 2
-guid: 7e7e2106a80f94c0098c7cc50e5992e5
-timeCreated: 1448397086
+guid: 78056cf3ca1024982a36a8c0dbaa9fa1
+timeCreated: 1448923088
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
     100002: chest
-    100004: head
-    100006: hip
-    100008: leftAnkle
-    100010: leftFoot
-    100012: leftKnee
-    100014: leftLeg
-    100016: leftShoulder
-    100018: leftWing
-    100020: neck
-    100022: pSphere15
-    100024: rightAnkle
-    100026: rightFoot
-    100028: rightKnee
-    100030: rightLeg
-    100032: rightShoulder
-    100034: rightWing
-    100036: tailBone
-    100038: tailTip
+    100004: core
+    100006: head
+    100008: hip
+    100010: leftElbow
+    100012: leftFoot
+    100014: leftHand
+    100016: leftKnee
+    100018: leftLeg
+    100020: leftShoulder
+    100022: neck
+    100024: pSphere39
+    100026: rightElbow
+    100028: rightFoot
+    100030: rightHand
+    100032: rightKnee
+    100034: rightLeg
+    100036: rightShoulder
     400000: //RootNode
     400002: chest
-    400004: head
-    400006: hip
-    400008: leftAnkle
-    400010: leftFoot
-    400012: leftKnee
-    400014: leftLeg
-    400016: leftShoulder
-    400018: leftWing
-    400020: neck
-    400022: pSphere15
-    400024: rightAnkle
-    400026: rightFoot
-    400028: rightKnee
-    400030: rightLeg
-    400032: rightShoulder
-    400034: rightWing
-    400036: tailBone
-    400038: tailTip
-    4300000: pSphere15
-    7400000: Walk
-    7400002: Idle
+    400004: core
+    400006: head
+    400008: hip
+    400010: leftElbow
+    400012: leftFoot
+    400014: leftHand
+    400016: leftKnee
+    400018: leftLeg
+    400020: leftShoulder
+    400022: neck
+    400024: pSphere39
+    400026: rightElbow
+    400028: rightFoot
+    400030: rightHand
+    400032: rightKnee
+    400034: rightLeg
+    400036: rightShoulder
+    4300000: pSphere39
+    7400000: Idle
+    7400002: Hurt
+    7400004: Attack
     9500000: //RootNode
-    13700000: pSphere15
+    13700000: pSphere39
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,72 +69,6 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations:
-    - serializedVersion: 16
-      name: Walk
-      takeName: Take 001
-      firstFrame: 25
-      lastFrame: 48
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: hip
-        weight: 1
-      - path: hip/chest
-        weight: 1
-      - path: hip/chest/leftShoulder
-        weight: 1
-      - path: hip/chest/leftShoulder/leftWing
-        weight: 1
-      - path: hip/chest/neck
-        weight: 1
-      - path: hip/chest/neck/head
-        weight: 1
-      - path: hip/chest/rightShoulder
-        weight: 1
-      - path: hip/chest/rightShoulder/rightWing
-        weight: 1
-      - path: hip/leftLeg
-        weight: 1
-      - path: hip/leftLeg/leftKnee
-        weight: 1
-      - path: hip/leftLeg/leftKnee/leftAnkle
-        weight: 1
-      - path: hip/leftLeg/leftKnee/leftAnkle/leftFoot
-        weight: 1
-      - path: hip/rightLeg
-        weight: 1
-      - path: hip/rightLeg/rightKnee
-        weight: 1
-      - path: hip/rightLeg/rightKnee/rightAnkle
-        weight: 1
-      - path: hip/rightLeg/rightKnee/rightAnkle/rightFoot
-        weight: 1
-      - path: hip/tailBone
-        weight: 1
-      - path: hip/tailBone/tailTip
-        weight: 1
-      - path: pSphere15
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
     - serializedVersion: 16
       name: Idle
       takeName: Take 001
@@ -164,41 +97,167 @@ ModelImporter:
         weight: 1
       - path: hip
         weight: 1
-      - path: hip/chest
+      - path: hip/core
         weight: 1
-      - path: hip/chest/leftShoulder
+      - path: hip/core/chest
         weight: 1
-      - path: hip/chest/leftShoulder/leftWing
+      - path: hip/core/chest/leftShoulder
         weight: 1
-      - path: hip/chest/neck
+      - path: hip/core/chest/leftShoulder/leftElbow
         weight: 1
-      - path: hip/chest/neck/head
+      - path: hip/core/chest/leftShoulder/leftElbow/leftHand
         weight: 1
-      - path: hip/chest/rightShoulder
+      - path: hip/core/chest/neck
         weight: 1
-      - path: hip/chest/rightShoulder/rightWing
+      - path: hip/core/chest/neck/head
+        weight: 1
+      - path: hip/core/chest/rightShoulder
+        weight: 1
+      - path: hip/core/chest/rightShoulder/rightElbow
+        weight: 1
+      - path: hip/core/chest/rightShoulder/rightElbow/rightHand
         weight: 1
       - path: hip/leftLeg
         weight: 1
       - path: hip/leftLeg/leftKnee
         weight: 1
-      - path: hip/leftLeg/leftKnee/leftAnkle
-        weight: 1
-      - path: hip/leftLeg/leftKnee/leftAnkle/leftFoot
+      - path: hip/leftLeg/leftKnee/leftFoot
         weight: 1
       - path: hip/rightLeg
         weight: 1
       - path: hip/rightLeg/rightKnee
         weight: 1
-      - path: hip/rightLeg/rightKnee/rightAnkle
+      - path: hip/rightLeg/rightKnee/rightFoot
         weight: 1
-      - path: hip/rightLeg/rightKnee/rightAnkle/rightFoot
+      - path: pSphere39
         weight: 1
-      - path: hip/tailBone
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hurt
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
         weight: 1
-      - path: hip/tailBone/tailTip
+      - path: hip
         weight: 1
-      - path: pSphere15
+      - path: hip/core
+        weight: 1
+      - path: hip/core/chest
+        weight: 1
+      - path: hip/core/chest/leftShoulder
+        weight: 1
+      - path: hip/core/chest/leftShoulder/leftElbow
+        weight: 1
+      - path: hip/core/chest/leftShoulder/leftElbow/leftHand
+        weight: 1
+      - path: hip/core/chest/neck
+        weight: 1
+      - path: hip/core/chest/neck/head
+        weight: 1
+      - path: hip/core/chest/rightShoulder
+        weight: 1
+      - path: hip/core/chest/rightShoulder/rightElbow
+        weight: 1
+      - path: hip/core/chest/rightShoulder/rightElbow/rightHand
+        weight: 1
+      - path: hip/leftLeg
+        weight: 1
+      - path: hip/leftLeg/leftKnee
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftFoot
+        weight: 1
+      - path: hip/rightLeg
+        weight: 1
+      - path: hip/rightLeg/rightKnee
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightFoot
+        weight: 1
+      - path: pSphere39
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 49
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: hip
+        weight: 1
+      - path: hip/core
+        weight: 1
+      - path: hip/core/chest
+        weight: 1
+      - path: hip/core/chest/leftShoulder
+        weight: 1
+      - path: hip/core/chest/leftShoulder/leftElbow
+        weight: 1
+      - path: hip/core/chest/leftShoulder/leftElbow/leftHand
+        weight: 1
+      - path: hip/core/chest/neck
+        weight: 1
+      - path: hip/core/chest/neck/head
+        weight: 1
+      - path: hip/core/chest/rightShoulder
+        weight: 1
+      - path: hip/core/chest/rightShoulder/rightElbow
+        weight: 1
+      - path: hip/core/chest/rightShoulder/rightElbow/rightHand
+        weight: 1
+      - path: hip/leftLeg
+        weight: 1
+      - path: hip/leftLeg/leftKnee
+        weight: 1
+      - path: hip/leftLeg/leftKnee/leftFoot
+        weight: 1
+      - path: hip/rightLeg
+        weight: 1
+      - path: hip/rightLeg/rightKnee
+        weight: 1
+      - path: hip/rightLeg/rightKnee/rightFoot
+        weight: 1
+      - path: pSphere39
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
