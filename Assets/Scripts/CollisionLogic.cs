@@ -12,11 +12,21 @@ public class CollisionLogic : MonoBehaviour {
 	string colliderName;
 	float lastTimeHit;
 	bool endGame;
-	public Text [] beachBalls;
+
+	public GameObject ball1;
+	public GameObject ball2;
+	public GameObject ball3;
+	bool isBall1Active = true;
+	bool isBall2Active = true;
+	bool isBall3Active = true;
+
+	
 
 
 
 	void Start(){
+
+
 		// literally hardcoding, I'll rewrite this later for non-prototype
 		if (playerNumber == 1) {
 			colliderName = "Player2";
@@ -38,6 +48,25 @@ public class CollisionLogic : MonoBehaviour {
 				string testString = "Ouch from " + playerNumber.ToString();
 				Debug.Log (testString);
 				hitcount--;
+				if( isBall1Active == true && isBall2Active == true && isBall3Active == true)
+				{
+					ball1.SetActive(false);
+					isBall1Active = false;
+				}
+				if(isBall1Active == false && isBall2Active == true && isBall3Active == true )
+				{
+					ball2.SetActive(false);
+					isBall2Active = false;
+
+				}
+				if(isBall1Active == false && isBall2Active == false && isBall3Active == true )
+				{
+					ball3.SetActive(false);
+					isBall3Active = false;
+
+				}
+
+
 
 				lastTimeHit = Time.time;
 
