@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraZoom : MonoBehaviour {
 
 	// attach to main camera
-	public Transform player1Pos; 
+	/*public Transform player1Pos; 
 	public Transform player2Pos;
 
 	// Use this for initialization
@@ -22,4 +22,5 @@ public class CameraZoom : MonoBehaviour {
 
 	
 	}
+	*/
 }
