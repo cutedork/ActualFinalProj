@@ -18,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
 	float jumpPower = 15;
 	float gravity = 40;
 
-	Animator topPlayerAnimator;
-	Animator bottomPlayerAnimator;
+	public Animator topPlayerAnimator;
+	public Animator bottomPlayerAnimator;
+
+	public float lastTrigger;
 
 	//bool playAnim;
 	List<KeyCode> playerKeys;
@@ -28,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		characterController = GetComponent<CharacterController>();
 		topPlayerAnimator = topCharacter.GetComponent<Animator>();
-
 		bottomPlayerAnimator = bottomCharacter.GetComponent<Animator>();
 
 		//playAnim = false;
@@ -106,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
 			//playAnim = !playAnim;
 			//StartCoroutine("Attack");
 			topPlayerAnimator.SetTrigger ("AttackTrigger");
+			lastTrigger = Time.time;
 		} 
 		//topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
 

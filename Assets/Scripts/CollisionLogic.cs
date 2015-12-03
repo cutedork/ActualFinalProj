@@ -20,15 +20,16 @@ public class CollisionLogic : MonoBehaviour {
 	bool isBall2Active = true;
 	bool isBall3Active = true;
 
-	public Rigidbody rbody;
+	//public Rigidbody rbody;
 	public PlayerMovement playerMovement;
+	public GameObject Opponent;
 
 
 	void Start(){
-		rbody = GetComponent<Rigidbody> ();
-		if (rbody == null) {
-			Debug.LogError ("rigidbody is null");
-		}
+		//rbody = GetComponent<Rigidbody> ();
+		//if (rbody == null) {
+		//	Debug.LogError ("rigidbody is null");
+		//}
 		playerMovement = GetComponentInParent<PlayerMovement> ();
 		if (playerMovement == null) {
 			Debug.LogError ("player movement script is null");
@@ -49,7 +50,7 @@ public class CollisionLogic : MonoBehaviour {
 
 		// LITERALLY. HARDCODING.
 		// two arms = this is being calling twice LOL #goodenough
-		if (GetComponentInParent<PlayerMovement>().topPlayerAnimator.GetBool("IsAttacking") ) {
+		if ((Time.time - GetComponentInParent<PlayerMovement>().lastTrigger) < 0.5f) {
 			Debug.Log (lastTimeHit);
 			Debug.Log (Time.time);
 			if (Time.time - lastTimeHit > 1){
@@ -82,10 +83,11 @@ public class CollisionLogic : MonoBehaviour {
 				if (otherHitcount <= 0){
 					Debug.Log ("WTF?!");
 					// knock top player off... somehow
-					if (rbody){
-					rbody.constraints = RigidbodyConstraints.None;
-					rbody.AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
-					}
+					//if (rbody){
+			        gameObject.AddComponent<Rigidbody>();
+				    Opponent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+					Opponent.GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
+					//}
 
 					if (endGame == false){
 						endGame = true;
@@ -100,7 +102,7 @@ public class CollisionLogic : MonoBehaviour {
 	public IEnumerator EndGame()
 	{
 		yield return new WaitForSeconds(1f);
-		Application.LoadLevel(2);
+		Application.LoadLevel("GameOver");
 	}
 	
 }
