@@ -69,14 +69,15 @@ public class CollisionLogic : MonoBehaviour {
 				if (hitcount <= 0){
 					Debug.Log ("WTF?!");
 					// knock top player off... somehow
+					gameObject.AddComponent<Rigidbody>();
 					GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 					GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
+
 
 					if (endGame == false){
 						endGame = true;
 						StartCoroutine("EndGame");
 					}
-					//Application.LoadLevel(2);
 				}
 			}
 		}
@@ -85,7 +86,7 @@ public class CollisionLogic : MonoBehaviour {
 	public IEnumerator EndGame()
 	{
 		yield return new WaitForSeconds(1f);
-		Application.LoadLevel(2);
+					Application.LoadLevel("GameOver");
 	}
 	
 }
