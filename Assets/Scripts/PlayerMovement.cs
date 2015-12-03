@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
 	float jumpPower = 15;
 	float gravity = 40;
 
-	Animator topPlayerAnimator;
+	public Animator topPlayerAnimator;
 
-	Animator bottomPlayerAnimator;
+	public Animator bottomPlayerAnimator;
 
 	//bool playAnim;
 	List<KeyCode> playerKeys;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
 		bottomPlayerAnimator = bottomCharacter.GetComponent<Animator>();
 
+		movementVector = Vector3.zero;
 		//playAnim = false;
 		if (playerNumber == 1) {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
@@ -192,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
 		topPlayerAnimator.SetBool("IsAttacking", true);
 		
 		yield return new WaitForSeconds(0.5f);
+	
 		
 		topPlayerAnimator.SetBool("IsAttacking", false);
 		
