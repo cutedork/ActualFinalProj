@@ -14,7 +14,7 @@ public class CameraZoom : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		offset = new Vector3 (142f, 132f, -170f);
+		offset = new Vector3 (142f, 132f, -170f); 
 		minimumOrthoSize = 20f;
 	}
 
@@ -36,7 +36,7 @@ public class CameraZoom : MonoBehaviour {
 
 	float CalculateOrthographicSize(){
 		distance = Vector3.Distance(player1.transform.position, player2.transform.position);
-		return (minimumOrthoSize + (distance/7f));
+		return (minimumOrthoSize + (distance/5f)); // original 7f
 	}
 
 }
