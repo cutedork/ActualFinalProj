@@ -40,21 +40,21 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.A,
 				KeyCode.S,
 				KeyCode.D,
-				KeyCode.Q,
-				KeyCode.E,
+				KeyCode.R,
+				KeyCode.Y,
 				KeyCode.Z,
-				KeyCode.X
+				KeyCode.T
 			});
 		} else {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
-				KeyCode.I,
-				KeyCode.J,
-				KeyCode.K,
-				KeyCode.L,
-				KeyCode.U,
-				KeyCode.O,
+				KeyCode.UpArrow,
+				KeyCode.LeftArrow,
+				KeyCode.DownArrow,
+				KeyCode.RightArrow,
+				KeyCode.Keypad7,
+				KeyCode.Keypad9,
 				KeyCode.M,
-				KeyCode.Comma
+				KeyCode.Keypad8
 			});
 		}
 	}
