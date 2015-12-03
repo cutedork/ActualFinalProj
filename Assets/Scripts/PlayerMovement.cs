@@ -8,10 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
 	public GameObject topCharacter;
-	public int playerNumber;
-
 	public GameObject bottomCharacter;
-
+	public int playerNumber;
+	public Transform opponent;
 
 	Vector3 movementVector;
 	CharacterController characterController;
@@ -19,9 +18,8 @@ public class PlayerMovement : MonoBehaviour
 	float jumpPower = 15;
 	float gravity = 40;
 
-	public Animator topPlayerAnimator;
-
-	public Animator bottomPlayerAnimator;
+	Animator topPlayerAnimator;
+	Animator bottomPlayerAnimator;
 
 	//bool playAnim;
 	List<KeyCode> playerKeys;
@@ -33,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
 		bottomPlayerAnimator = bottomCharacter.GetComponent<Animator>();
 
-		movementVector = Vector3.zero;
 		//playAnim = false;
 		if (playerNumber == 1) {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
@@ -41,21 +38,17 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.A,
 				KeyCode.S,
 				KeyCode.D,
-				KeyCode.Q,
-				KeyCode.E,
-				KeyCode.Z,
-				KeyCode.X
+				KeyCode.T,
+				KeyCode.Y
 			});
 		} else {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
-				KeyCode.I,
-				KeyCode.J,
-				KeyCode.K,
-				KeyCode.L,
-				KeyCode.U,
-				KeyCode.O,
-				KeyCode.M,
-				KeyCode.Comma
+				KeyCode.UpArrow,
+				KeyCode.LeftArrow,
+				KeyCode.DownArrow,
+				KeyCode.RightArrow,
+				KeyCode.Keypad7,
+				KeyCode.Keypad8
 			});
 		}
 	}
@@ -67,9 +60,7 @@ public class PlayerMovement : MonoBehaviour
 		if ((Input.GetKey (playerKeys[0])) || 
 		    (Input.GetKey (playerKeys[1])) ||
 		    (Input.GetKey (playerKeys[2])) ||
-		    (Input.GetKey (playerKeys[3])) ||
-		    (Input.GetKey (playerKeys[4])) ||
-		    (Input.GetKey (playerKeys[5])) ) {
+		    (Input.GetKey (playerKeys[3])) ) {
 			// StartCoroutine("Walk");
 
 		    bottomPlayerAnimator.SetBool("IsWalking", true);
@@ -92,18 +83,18 @@ public class PlayerMovement : MonoBehaviour
 		} 
 
 		//Player rotation CLOCKWISE, COUNTERCLOCKWISE
-		if (Input.GetKey (playerKeys[4])) {
-			transform.Rotate(0f, 10f, 0f);
-		}
-		if (Input.GetKey (playerKeys[5])) {
-			transform.Rotate(0f, -10f, 0f);
-		}
+		//if (Input.GetKey (playerKeys[4])) {
+		//	transform.Rotate(0f, 10f, 0f);
+		//}
+		//if (Input.GetKey (playerKeys[5])) {
+		//	transform.Rotate(0f, -10f, 0f);
+		//}
 
 		//Jump Logic CHECK IF GROUNDED, IF NOT APPLY JUMP POWER
 		if(characterController.isGrounded)
 		{
 			movementVector.y = 0;
-			if(Input.GetKeyDown (playerKeys[6]))
+			if(Input.GetKeyDown (playerKeys[4]))
 			{
 				movementVector.y = jumpPower;
 			}
@@ -111,16 +102,17 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		//Attack Logic PLAY ANIMATION TO ATTACK
-		if (Input.GetKeyDown(playerKeys[7])) {
+		if (Input.GetKeyDown(playerKeys[5])) {
 			//playAnim = !playAnim;
-			StartCoroutine("Attack");
+			//StartCoroutine("Attack");
+			topPlayerAnimator.SetTrigger ("AttackTrigger");
 		} 
 		//topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
 
 		//Apply final movement vector
 		movementVector.y -= gravity * Time.deltaTime;
 		characterController.Move(movementVector * Time.deltaTime);
-
+		transform.LookAt (opponent);
 
 		// Debug.Log (Input.GetAxis ("LeftJoystickX"));
 		// Debug.Log (Input.GetAxis ("LeftJoystickY"));
@@ -193,7 +185,6 @@ public class PlayerMovement : MonoBehaviour
 		topPlayerAnimator.SetBool("IsAttacking", true);
 		
 		yield return new WaitForSeconds(0.5f);
-	
 		
 		topPlayerAnimator.SetBool("IsAttacking", false);
 		
