@@ -6,10 +6,11 @@ public class PlayerAttack : MonoBehaviour {
 	Animator topPlayerAnimator;
 
 	bool playAnim = false;
+	public float hitTimer;
 
 	// Use this for initialization
 	void Start () {
-
+		hitTimer = 0f;
 		topPlayerAnimator = GetComponent<Animator>();
 	
 	}
@@ -25,9 +26,14 @@ public class PlayerAttack : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.A)) {
 			playAnim = !playAnim;
+			hitTimer = 0.5f;
 		} 
+		if (hitTimer > 0) {
+			hitTimer -= Time.deltaTime;
+		}
 
 		topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
+	
 	
 	}
 }
