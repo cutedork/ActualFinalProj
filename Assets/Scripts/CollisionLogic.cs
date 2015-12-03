@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CollisionLogic : MonoBehaviour {
 
@@ -12,7 +13,20 @@ public class CollisionLogic : MonoBehaviour {
 	float lastTimeHit;
 	bool endGame;
 
+	public GameObject ball1;
+	public GameObject ball2;
+	public GameObject ball3;
+	bool isBall1Active = true;
+	bool isBall2Active = true;
+	bool isBall3Active = true;
+
+	
+
+
+
 	void Start(){
+
+
 		// literally hardcoding, I'll rewrite this later for non-prototype
 		if (playerNumber == 1) {
 			colliderName = "Player2";
@@ -34,6 +48,21 @@ public class CollisionLogic : MonoBehaviour {
 				string testString = "Ouch from " + playerNumber.ToString();
 				Debug.Log (testString);
 				hitcount--;
+				if( hitcount == 2)
+				{
+					ball1.SetActive(false);
+				}
+				if( hitcount == 1 )
+				{
+					ball2.SetActive(false);
+
+				}
+				if(hitcount == 0)
+				{
+					ball3.SetActive(false);
+
+				}
+
 
 				lastTimeHit = Time.time;
 
