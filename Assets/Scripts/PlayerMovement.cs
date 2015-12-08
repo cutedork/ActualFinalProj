@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 	public Animator bottomPlayerAnimator;
 
 	public float lastTrigger;
+	public GameObject splash;
 
 	float FButtonCooler = 0.5f ; // Half a second before reset
 	float FButtonCount = 0f;
@@ -95,10 +96,12 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if (Input.GetKeyDown (playerKeys [0])) {
 			if ( FButtonCooler > 0 && FButtonCount == 1 && isDashing == false){
+				// do double tap stuff
 				currentDashTime = 0.0f;
 				isDashing = true;
 				dashF = true;
 			}else{
+				// timer
 				FButtonCooler = 0.5f ; 
 				FButtonCount += 1 ;
 			}
@@ -216,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
 				currentDashTime += dashStoppingSpeed;
 			}
 			else {
+				// close trail
 				isDashing = false;
 				dashF = false;
 				dashB = false;
