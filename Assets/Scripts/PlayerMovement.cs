@@ -67,8 +67,8 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.LeftArrow,
 				KeyCode.DownArrow,
 				KeyCode.RightArrow,
-				KeyCode.Keypad7,
-				KeyCode.Keypad8
+				KeyCode.O,
+				KeyCode.P
 			});
 		}
 		currentDashTime = maxDashTime;
