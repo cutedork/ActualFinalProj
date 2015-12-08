@@ -41,6 +41,8 @@ public class CollisionLogic : MonoBehaviour {
 		lastTimeHit = 0f;
 		hitcount = 3;
 		endGame = false;
+		gameObject.GetComponent<ParticleSystem>().enableEmission = false;
+
 	}
 
 	void OnTriggerEnter(Collider collision){
@@ -57,6 +59,7 @@ public class CollisionLogic : MonoBehaviour {
 				string testString = "Ouch from " + playerNumber.ToString();
 				Debug.Log (testString);
 				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
+				gameObject.GetComponent<ParticleSystem>().enableEmission = true;
 
 				int otherHitcount = otherCollisionLogic.hitcount;
 				otherHitcount--;
