@@ -61,17 +61,17 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.A,
 				KeyCode.S,
 				KeyCode.D,
-				KeyCode.T,
-				KeyCode.Y
+				KeyCode.R,
+				KeyCode.T
 			});
 		} else {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
-				KeyCode.I,
-				KeyCode.J,
-				KeyCode.K,
-				KeyCode.L,
+				KeyCode.UpArrow,
+				KeyCode.LeftArrow,
+				KeyCode.DownArrow,
+				KeyCode.RightArrow,
 				KeyCode.LeftBracket,
-				KeyCode.RightBracket
+				KeyCode.Slash
 			});
 		}
 		currentDashTime = maxDashTime;
