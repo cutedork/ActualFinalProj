@@ -79,6 +79,12 @@ public class PlayerMovement : MonoBehaviour
 	{
 		movementVector = new Vector3 (0f, movementVector.y, 0f);
 
+
+		// DEBUG STUFF 
+		//if (playerKeys == null) {
+		//	 gameObject.SetActive(false);
+		//}
+
 		if ((Input.GetKey (playerKeys[0])) || 
 		    (Input.GetKey (playerKeys[1])) ||
 		    (Input.GetKey (playerKeys[2])) ||
