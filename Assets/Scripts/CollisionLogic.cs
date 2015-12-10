@@ -19,7 +19,7 @@ public class CollisionLogic : MonoBehaviour {
 	bool isBall1Active = true;
 	bool isBall2Active = true;
 	bool isBall3Active = true;
-	public ParticleSystem playerHitParticle;
+    ParticleSystem playerHitParticle;
 
 
 
