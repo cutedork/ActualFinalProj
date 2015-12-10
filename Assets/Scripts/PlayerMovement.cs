@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
 	//bool playAnim;
 	List<KeyCode> playerKeys;
 
+	public ParticleSystem particles;
+
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
@@ -59,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.A,
 				KeyCode.S,
 				KeyCode.D,
-				KeyCode.T,
-				KeyCode.Y
+				KeyCode.R,
+				KeyCode.T
 			});
 		} else {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
@@ -68,8 +70,8 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.LeftArrow,
 				KeyCode.DownArrow,
 				KeyCode.RightArrow,
-				KeyCode.O,
-				KeyCode.P
+				KeyCode.LeftBracket,
+				KeyCode.Slash
 			});
 		}
 		currentDashTime = maxDashTime;
@@ -208,6 +210,7 @@ public class PlayerMovement : MonoBehaviour
 		//Apply final movement vector
 		if (isDashing) {
 			movementVector = Vector3.zero;
+			particles.Play ();
 			if (currentDashTime < maxDashTime)
 			{
 				if (dashF){
@@ -226,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 			else {
 				// close trail
+				particles.Stop ();
 				isDashing = false;
 				dashF = false;
 				dashB = false;
