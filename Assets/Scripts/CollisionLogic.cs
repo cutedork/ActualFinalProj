@@ -110,7 +110,11 @@ public class CollisionLogic : MonoBehaviour {
 	public IEnumerator EndGame()
 	{
 		yield return new WaitForSeconds(1f);
-		Application.LoadLevel("GameOver");
+		if (playerNumber == 1) {
+			Application.LoadLevel ("GameOver1");
+		} else {
+			Application.LoadLevel ("GameOver2");
+		}
 	}
 	
 }
