@@ -11,7 +11,7 @@ public class introstart : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	if (Input.anyKeyDown) {
-			Application.LoadLevel (1);
+			Application.LoadLevel ("Level1Scene");
 		}
 	}
 }
