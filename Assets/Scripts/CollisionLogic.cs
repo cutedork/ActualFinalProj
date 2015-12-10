@@ -19,6 +19,9 @@ public class CollisionLogic : MonoBehaviour {
 	bool isBall1Active = true;
 	bool isBall2Active = true;
 	bool isBall3Active = true;
+	public ParticleSystem playerHitParticle;
+
+
 
 	//public Rigidbody rbody;
 	public PlayerMovement playerMovement;
@@ -41,7 +44,8 @@ public class CollisionLogic : MonoBehaviour {
 		lastTimeHit = 0f;
 		hitcount = 3;
 		endGame = false;
-		gameObject.GetComponent<ParticleSystem>().enableEmission = false;
+		playerHitParticle = gameObject.GetComponent<ParticleSystem>();
+		playerHitParticle.Stop ();
 
 	}
 
@@ -59,7 +63,8 @@ public class CollisionLogic : MonoBehaviour {
 				string testString = "Ouch from " + playerNumber.ToString();
 				Debug.Log (testString);
 				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
-				gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+				playerHitParticle.Play ();
+
 
 				int otherHitcount = otherCollisionLogic.hitcount;
 				otherHitcount--;

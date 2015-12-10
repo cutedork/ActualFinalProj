@@ -7,7 +7,7 @@ public class RestartGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.T)) {
-			Application.LoadLevel ("newModeltest");
+			//Application.LoadLevel ("newModeltest");
 		}
 	}
 }
