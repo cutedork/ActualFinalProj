@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	public Transform opponent;
 	Vector3 movementVector;
 	CharacterController characterController;
-	float movementSpeed = 32; // 8
+	public float movementSpeed = 32; // 8
 
 	public Animator topPlayerAnimator;
 	public Animator bottomPlayerAnimator;

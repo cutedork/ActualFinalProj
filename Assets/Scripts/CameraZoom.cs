@@ -6,6 +6,8 @@ public class CameraZoom : MonoBehaviour {
 	public Transform player1;
 	public Transform player2;
 
+	public static bool isScreenShaking = false;
+
 	Vector3 midpoint;
 	Vector3 offset;
 	float minimumOrthoSize;
@@ -20,9 +22,11 @@ public class CameraZoom : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		transform.position = CalculateCameraPosition();
-		//Debug.Log (Vector3.Distance (player1.transform.position, player2.transform.position));
-		GetComponent<Camera>().orthographicSize = CalculateOrthographicSize();
+		if (!isScreenShaking){
+			transform.position = CalculateCameraPosition();
+			//Debug.Log (Vector3.Distance (player1.transform.position, player2.transform.position));
+			GetComponent<Camera>().orthographicSize = CalculateOrthographicSize();
+		}
 	}
 
 
