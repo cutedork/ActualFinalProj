@@ -62,7 +62,7 @@ public class CollisionLogic : MonoBehaviour {
 				Debug.Log (testString);
 				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
 				playerHitParticle.Play ();
-				DoScreenShake();
+				CameraZoom.isScreenShaking = true;
 
 				Opponent.GetComponent<PlayerMovement>().AddImpact(-Opponent.GetComponent<Transform>().forward, 1000f);
 
