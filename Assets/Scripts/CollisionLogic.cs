@@ -14,6 +14,9 @@ public class CollisionLogic : MonoBehaviour {
 	string colliderName;
 	float lastTimeHit;
 	bool endGame;
+	public AudioClip scream;
+	public AudioClip death;
+	public AudioSource sounds;
 
 	public GameObject ball1;
 	public GameObject ball2;
@@ -44,6 +47,8 @@ public class CollisionLogic : MonoBehaviour {
 		endGame = false;
 		playerHitParticle = gameObject.GetComponent<ParticleSystem>();
 		playerHitParticle.Stop ();
+		sounds = gameObject.GetComponent<AudioSource>();
+
 
 	}
 
@@ -72,16 +77,22 @@ public class CollisionLogic : MonoBehaviour {
 				if( otherHitcount == 2)
 				{
 					otherCollisionLogic.ball1.SetActive(false);
+					sounds.PlayOneShot(scream);
+
 				}
 				if( otherHitcount == 1 )
 				{
 					 otherCollisionLogic.ball2.SetActive(false);
+					sounds.PlayOneShot (scream);
 
+					
 				}
 				if(otherHitcount == 0)
 				{
 					otherCollisionLogic.ball3.SetActive(false);
+					sounds.PlayOneShot (death);
 
+					
 				}
 				collision.gameObject.GetComponent<CollisionLogic>().hitcount = otherHitcount;
 				lastTimeHit = Time.time;
