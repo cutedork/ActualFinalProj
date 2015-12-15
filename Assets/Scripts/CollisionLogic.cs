@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CollisionLogic : MonoBehaviour {
 
+	public ScreenShake shakeManager;
+
 	// LEGIT UGLY
 	public int playerNumber;
 
@@ -64,6 +66,7 @@ public class CollisionLogic : MonoBehaviour {
 				Debug.Log (testString);
 				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
 				playerHitParticle.Play ();
+				shakeManager.DoScreenShake(); // call screenshake
 
 
 				int otherHitcount = otherCollisionLogic.hitcount;
