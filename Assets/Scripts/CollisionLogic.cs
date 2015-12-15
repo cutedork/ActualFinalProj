@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CollisionLogic : MonoBehaviour {
 
+	public ScreenShake shakeManager;
+
 	// LEGIT UGLY
 	public int playerNumber;
 
@@ -16,16 +18,12 @@ public class CollisionLogic : MonoBehaviour {
 	public GameObject ball1;
 	public GameObject ball2;
 	public GameObject ball3;
-	bool isBall1Active = true;
-	bool isBall2Active = true;
-	bool isBall3Active = true;
     ParticleSystem playerHitParticle;
-
-
 
 	//public Rigidbody rbody;
 	public PlayerMovement playerMovement;
 	public GameObject Opponent;
+	public GameObject OpponentTopBody;
 
 
 	void Start(){
@@ -64,7 +62,9 @@ public class CollisionLogic : MonoBehaviour {
 				Debug.Log (testString);
 				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
 				playerHitParticle.Play ();
+				shakeManager.DoScreenShake(); // call screenshake
 
+				Opponent.GetComponent<PlayerMovement>().AddImpact(-Opponent.GetComponent<Transform>().forward, 1000f);
 
 				int otherHitcount = otherCollisionLogic.hitcount;
 				otherHitcount--;
@@ -83,9 +83,6 @@ public class CollisionLogic : MonoBehaviour {
 
 				}
 				collision.gameObject.GetComponent<CollisionLogic>().hitcount = otherHitcount;
-
-
-
 				lastTimeHit = Time.time;
 
 				if (otherHitcount <= 0){
@@ -93,8 +90,8 @@ public class CollisionLogic : MonoBehaviour {
 					// knock top player off... somehow
 					//if (rbody){
 			        gameObject.AddComponent<Rigidbody>();
-				    Opponent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-					Opponent.GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
+					OpponentTopBody.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+					OpponentTopBody.GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
 					//}
 
 					if (endGame == false){
