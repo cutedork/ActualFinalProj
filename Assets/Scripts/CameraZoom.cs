@@ -28,8 +28,8 @@ public class CameraZoom : MonoBehaviour {
 		if (TutorialManager.isTutorial) {
 			Vector3 newEnd;
 			Vector3 newStart = player1.transform.position;
-			Vector3 offset = (player2.transform.position - player1.transform.position) / 20;
-			for (int i = 10; i > 0; i--) {
+			Vector3 offset = (player2.transform.position - player1.transform.position) / 100;
+			for (int i = 50; i > 0; i--) {
 				newEnd = newStart + offset;
 				StartCoroutine (drawMyLine (newStart, newEnd, Color.red));
 				newStart = newEnd + offset;
