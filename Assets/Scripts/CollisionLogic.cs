@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CollisionLogic : MonoBehaviour {
 
-	public ScreenShake shakeManager;
+	public float shakePower;
 
 	// LEGIT UGLY
 	public int playerNumber;
@@ -14,6 +14,9 @@ public class CollisionLogic : MonoBehaviour {
 	string colliderName;
 	float lastTimeHit;
 	bool endGame;
+	public AudioClip scream;
+	public AudioClip death;
+	public AudioSource sounds;
 
 	public GameObject ball1;
 	public GameObject ball2;
@@ -44,6 +47,8 @@ public class CollisionLogic : MonoBehaviour {
 		endGame = false;
 		playerHitParticle = gameObject.GetComponent<ParticleSystem>();
 		playerHitParticle.Stop ();
+		sounds = gameObject.GetComponent<AudioSource>();
+
 
 	}
 
@@ -62,25 +67,32 @@ public class CollisionLogic : MonoBehaviour {
 				Debug.Log (testString);
 				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
 				playerHitParticle.Play ();
-				shakeManager.DoScreenShake(); // call screenshake
+				CameraZoom.isScreenShaking = true;
 
 				Opponent.GetComponent<PlayerMovement>().AddImpact(-Opponent.GetComponent<Transform>().forward, 1000f);
+
 
 				int otherHitcount = otherCollisionLogic.hitcount;
 				otherHitcount--;
 				if( otherHitcount == 2)
 				{
 					otherCollisionLogic.ball1.SetActive(false);
+					sounds.PlayOneShot(scream);
+
 				}
 				if( otherHitcount == 1 )
 				{
 					 otherCollisionLogic.ball2.SetActive(false);
+					sounds.PlayOneShot (scream);
 
+					
 				}
 				if(otherHitcount == 0)
 				{
 					otherCollisionLogic.ball3.SetActive(false);
+					sounds.PlayOneShot (death);
 
+					
 				}
 				collision.gameObject.GetComponent<CollisionLogic>().hitcount = otherHitcount;
 				lastTimeHit = Time.time;
@@ -104,6 +116,28 @@ public class CollisionLogic : MonoBehaviour {
 		}
 	}
 
+	public void DoScreenShake () {  
+		StartCoroutine (ShakeCoroutine (0.25f) ); 
+	}
+	
+	IEnumerator ShakeCoroutine (float shakePower) {
+		Vector3 cameraStart = Camera.main.transform.position; 
+		float t = 1f; // t = time
+		//CameraZoom.isScreenShaking = true;
+		while ( t > 0f ) { // as long as t > 0, then keep doing this code...
+			t -= Time.deltaTime / 0.5f; // each frame, make t smaller ( divide this by / 2f to change duration of screen shake
+			// Time.deltaTime = time last frame, usually 1/60th of a second
+			// eventually t will be less than or equal to zero
+			Vector3 shakeVector = Camera.main.transform.right * Mathf.Sin (Time.time * 50f) + 
+				Camera.main.transform.up * Mathf.Sin (Time.time * 100f); 
+			Camera.main.transform.position = cameraStart + shakeVector * t * shakePower;
+			//if (t <= 0f){
+			//	CameraZoom.isScreenShaking = false;	
+			//}
+			yield return 0;
+		}
+	}
+	
 	public IEnumerator EndGame()
 	{
 		yield return new WaitForSeconds(1f);
