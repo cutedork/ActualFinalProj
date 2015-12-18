@@ -24,6 +24,8 @@ public class CameraZoom : MonoBehaviour {
 	{
 		transform.position = CalculateCameraPosition();
 		//Debug.Log (Vector3.Distance (player1.transform.position, player2.transform.position));
+		StartCoroutine(drawMyLine(player1.transform.position , player2.transform.position, Color.red , 0.01f));
+
 		GetComponent<Camera>().orthographicSize = CalculateOrthographicSize();
 	}
 
@@ -54,6 +56,20 @@ public class CameraZoom : MonoBehaviour {
 	float CalculateOrthographicSize(){
 		distance = Vector3.Distance(player1.transform.position, player2.transform.position);
 		return (minimumOrthoSize + (distance/5f)); // original 7f
+	}
+
+	IEnumerator drawMyLine(Vector3 start , Vector3 end, Color color,float duration = 0.1f){
+		GameObject myLine = new GameObject ();
+		myLine.transform.position = start;
+		myLine.AddComponent<LineRenderer> ();
+		LineRenderer lr = myLine.GetComponent<LineRenderer> ();
+		lr.material = new Material (Shader.Find ("Particles/Additive"));
+		lr.SetColors (color,color);
+		lr.SetWidth (0.5f,0.5f);
+		lr.SetPosition (0, start);
+		lr.SetPosition (1, end);
+		yield return new WaitForSeconds(duration);
+		GameObject.Destroy (myLine);
 	}
 
 }
