@@ -23,10 +23,18 @@ public class CameraZoom : MonoBehaviour {
 	void LateUpdate()
 	{
 		transform.position = CalculateCameraPosition();
-		//Debug.Log (Vector3.Distance (player1.transform.position, player2.transform.position));
-		StartCoroutine(drawMyLine(player1.transform.position , player2.transform.position, Color.red , 0.01f));
-
 		GetComponent<Camera>().orthographicSize = CalculateOrthographicSize();
+		//Debug.Log (Vector3.Distance (player1.transform.position, player2.transform.position));
+		if (TutorialManager.isTutorial) {
+			Vector3 newEnd;
+			Vector3 newStart = player1.transform.position;
+			Vector3 offset = (player2.transform.position - player1.transform.position) / 20;
+			for (int i = 10; i > 0; i--) {
+				newEnd = newStart + offset;
+				StartCoroutine (drawMyLine (newStart, newEnd, Color.red));
+				newStart = newEnd + offset;
+			}
+		}
 	}
 
 
@@ -58,17 +66,17 @@ public class CameraZoom : MonoBehaviour {
 		return (minimumOrthoSize + (distance/5f)); // original 7f
 	}
 
-	IEnumerator drawMyLine(Vector3 start , Vector3 end, Color color,float duration = 0.1f){
+	IEnumerator drawMyLine(Vector3 start , Vector3 end, Color color){
 		GameObject myLine = new GameObject ();
 		myLine.transform.position = start;
 		myLine.AddComponent<LineRenderer> ();
 		LineRenderer lr = myLine.GetComponent<LineRenderer> ();
 		lr.material = new Material (Shader.Find ("Particles/Additive"));
-		lr.SetColors (color,color);
-		lr.SetWidth (0.5f,0.5f);
+		lr.SetColors (color, color);
+		lr.SetWidth (0.5f, 0.5f);
 		lr.SetPosition (0, start);
 		lr.SetPosition (1, end);
-		yield return new WaitForSeconds(duration);
+		yield return 0;
 		GameObject.Destroy (myLine);
 	}
 
