@@ -1,10 +1,13 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class TutorialManager : MonoBehaviour {
 	public static bool isTutorial = true;
 	public GameObject p1Keys;
 	public GameObject p2Keys;
+	public GameObject player1Pink;
+	public GameObject player2Blue;
+
 	
 	void Update () {
 		StartCoroutine(endTutorial (10.0f));
