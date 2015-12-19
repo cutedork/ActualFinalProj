@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
 
 	float mass = 3.0F; // defines the character mass
 	Vector3 impact = Vector3.zero;
+
+
+	// player key stuff
+	public GameObject[] wasdImages;
+	public GameObject[] arrowImages;
 
 	void Start ()
 	{
@@ -238,6 +244,66 @@ public class PlayerMovement : MonoBehaviour
 		}
 		// consumes the impact energy each cycle:
 		impact = Vector3.Lerp(impact, Vector3.zero, 5*Time.deltaTime);
+
+
+		// key images
+		if (playerNumber == 1) {
+			if (Input.GetKey (playerKeys[0])) {
+				wasdImages[0].SetActive(true);
+				wasdImages[1].SetActive(false);
+				wasdImages[2].SetActive(false);
+				wasdImages[3].SetActive(false);
+			} else if (Input.GetKey (playerKeys[1])) {
+				wasdImages[0].SetActive(false);
+				wasdImages[1].SetActive(true);
+				wasdImages[2].SetActive(false);
+				wasdImages[3].SetActive(false);
+			} else if (Input.GetKey (playerKeys[2])) {
+				wasdImages[0].SetActive(false);
+				wasdImages[1].SetActive(false);
+				wasdImages[2].SetActive(true);
+				wasdImages[3].SetActive(false);
+			} else if (Input.GetKey (playerKeys[3])) {
+				wasdImages[0].SetActive(false);
+				wasdImages[1].SetActive(false);
+				wasdImages[2].SetActive(false);
+				wasdImages[3].SetActive(true);
+			} else {
+				wasdImages[0].SetActive(false);
+				wasdImages[1].SetActive(false);
+				wasdImages[2].SetActive(false);
+				wasdImages[3].SetActive(false);
+			}
+		} else if (playerNumber == 2) {
+			if (Input.GetKey (playerKeys[0])) {
+				arrowImages[0].SetActive(true);
+				arrowImages[1].SetActive(false);
+				arrowImages[2].SetActive(false);
+				arrowImages[3].SetActive(false);
+			} else if (Input.GetKey (playerKeys[1])) {
+				arrowImages[0].SetActive(false);
+				arrowImages[1].SetActive(true);
+				arrowImages[2].SetActive(false);
+				arrowImages[3].SetActive(false);
+			} else if (Input.GetKey (playerKeys[2])) {
+				arrowImages[0].SetActive(false);
+				arrowImages[1].SetActive(false);
+				arrowImages[2].SetActive(true);
+				arrowImages[3].SetActive(false);
+			} else if (Input.GetKey (playerKeys[3])) {
+				arrowImages[0].SetActive(false);
+				arrowImages[1].SetActive(false);
+				arrowImages[2].SetActive(false);
+				arrowImages[3].SetActive(true);
+			} else {
+				arrowImages[0].SetActive(false);
+				arrowImages[1].SetActive(false);
+				arrowImages[2].SetActive(false);
+				arrowImages[3].SetActive(false);
+			}
+
+		}
+
 
 		// Debug.Log (Input.GetAxis ("LeftJoystickX"));
 		// Debug.Log (Input.GetAxis ("LeftJoystickY"));
