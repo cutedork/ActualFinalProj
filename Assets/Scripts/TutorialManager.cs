@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TutorialManager : MonoBehaviour {
+public class TutorialManager : MonoBehaviour
+{
 	public static bool isTutorial = true;
 	public GameObject p1Keys;
 	public GameObject p2Keys;
 	public GameObject player1Pink;
 	public GameObject player2Blue;
 
-	
-	void Update () {
-		StartCoroutine(endTutorial (10.0f));
+	void Update ()
+	{
+		StartCoroutine (endTutorial (10.0f));
 	}
 
-	IEnumerator endTutorial( float duration ){
+	IEnumerator endTutorial (float duration)
+	{
 		yield return new WaitForSeconds (duration);
 		isTutorial = false;
 		p1Keys.SetActive (false);

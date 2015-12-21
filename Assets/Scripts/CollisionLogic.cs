@@ -3,148 +3,106 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class CollisionLogic : MonoBehaviour {
-
-	public float shakePower;
-
-	// LEGIT UGLY
+public class CollisionLogic : MonoBehaviour
+{
+	// personal player number
 	public int playerNumber;
 
-	int hitcount;
-	string colliderName;
-	float lastTimeHit;
-	bool endGame;
+	// audio
 	public AudioClip scream;
 	public AudioClip death;
 	public AudioSource sounds;
 
+	// UI
 	public GameObject ball1;
 	public GameObject ball2;
 	public GameObject ball3;
-    ParticleSystem playerHitParticle;
 
-	//public Rigidbody rbody;
-	public PlayerMovement playerMovement;
+	// opponent references
 	public GameObject Opponent;
 	public GameObject OpponentTopBody;
 
+	// personal variables
+	int hitcount;
+	string colliderName;
+	float lastTimeHit;
+	bool endGame;
+	ParticleSystem playerHitParticle;
+	PlayerMovement playerMovement;
 
-	void Start(){
-		//rbody = GetComponent<Rigidbody> ();
-		//if (rbody == null) {
-		//	Debug.LogError ("rigidbody is null");
-		//}
+	void Start ()
+	{
+		// initializing personal variables
 		playerMovement = GetComponentInParent<PlayerMovement> ();
 		if (playerMovement == null) {
 			Debug.LogError ("player movement script is null");
-			}
+		}
 
-		// literally hardcoding, I'll rewrite this later for non-prototype
-	
-	
 		lastTimeHit = 0f;
 		hitcount = 3;
 		endGame = false;
-		playerHitParticle = gameObject.GetComponent<ParticleSystem>();
+		playerHitParticle = gameObject.GetComponent<ParticleSystem> ();
 		playerHitParticle.Stop ();
-		sounds = gameObject.GetComponent<AudioSource>();
-
-
+		sounds = gameObject.GetComponent<AudioSource> ();
 	}
 
-	void OnTriggerEnter(Collider collision){
-		if ((tag == "Player1" && collision.tag != "Player2") || (tag == "Player2" && collision.tag != "Player1")) {
-			return;
-		}
-
-		// LITERALLY. HARDCODING.
-		// two arms = this is being calling twice LOL #goodenough
-		if ((Time.time - GetComponentInParent<PlayerMovement>().lastTrigger) < 0.5f) {
-			Debug.Log (lastTimeHit);
-			Debug.Log (Time.time);
-			if (Time.time - lastTimeHit > 1){
-				string testString = "Ouch from " + playerNumber.ToString();
-				Debug.Log (testString);
-				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic>();
+	void OnTriggerEnter (Collider collision)
+	{
+		// if statement to check if it's hitting itself
+		if ((tag == "Player1" && collision.tag == "Player2") || (tag == "Player2" && collision.tag == "Player1")) {
+			// if statement to check cooldown between hits
+			// if ((Time.time - GetComponentInParent<PlayerMovement> ().lastTrigger) < 0.5f) {
+			if (Time.time - lastTimeHit > 0.5f) {
+				// play particles
 				playerHitParticle.Play ();
+				// set screenshake
 				CameraZoom.isScreenShaking = true;
+				// add knockback effect
+				Opponent.GetComponent<PlayerMovement> ().AddImpact (-Opponent.GetComponent<Transform> ().forward, 1000f);
 
-				Opponent.GetComponent<PlayerMovement>().AddImpact(-Opponent.GetComponent<Transform>().forward, 1000f);
+				// gain access to the other collisionlogic script
+				CollisionLogic otherCollisionLogic = collision.gameObject.GetComponent<CollisionLogic> ();
 
-
+				// somewhat manually set the hp bars
 				int otherHitcount = otherCollisionLogic.hitcount;
 				otherHitcount--;
-				if( otherHitcount == 2)
-				{
-					otherCollisionLogic.ball1.SetActive(false);
-					sounds.PlayOneShot(scream);
-
-				}
-				if( otherHitcount == 1 )
-				{
-					 otherCollisionLogic.ball2.SetActive(false);
+				if (otherHitcount == 2) {
+					otherCollisionLogic.ball1.SetActive (false);
 					sounds.PlayOneShot (scream);
-
-					
 				}
-				if(otherHitcount == 0)
-				{
-					otherCollisionLogic.ball3.SetActive(false);
+				if (otherHitcount == 1) {
+					otherCollisionLogic.ball2.SetActive (false);
+					sounds.PlayOneShot (scream);
+				}
+				if (otherHitcount == 0) {
+					otherCollisionLogic.ball3.SetActive (false);
 					sounds.PlayOneShot (death);
-
-					
 				}
-				collision.gameObject.GetComponent<CollisionLogic>().hitcount = otherHitcount;
+				collision.gameObject.GetComponent<CollisionLogic> ().hitcount = otherHitcount;
 				lastTimeHit = Time.time;
 
-				if (otherHitcount <= 0){
-					Debug.Log ("WTF?!");
-					// knock top player off... somehow
-					//if (rbody){
-			        gameObject.AddComponent<Rigidbody>();
-					OpponentTopBody.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-					OpponentTopBody.GetComponent<Rigidbody>().AddForce((new Vector3(0f, 1f, -1f)) * 1000f);
-					//}
+				if (otherHitcount <= 0) {
+					// knock other player off
+					OpponentTopBody.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+					OpponentTopBody.GetComponent<Rigidbody> ().AddForce ((new Vector3 (0f, 1f, -1f)) * 1000f);
 
-					if (endGame == false){
+					if (endGame == false) {
 						endGame = true;
-						StartCoroutine("EndGame");
+						StartCoroutine (EndGame ());
 					}
-					//Application.LoadLevel(2);
 				}
 			}
+			//}
 		}
 	}
 
-	public void DoScreenShake () {  
-		StartCoroutine (ShakeCoroutine (0.25f) ); 
-	}
-	
-	IEnumerator ShakeCoroutine (float shakePower) {
-		Vector3 cameraStart = Camera.main.transform.position; 
-		float t = 1f; // t = time
-		//CameraZoom.isScreenShaking = true;
-		while ( t > 0f ) { // as long as t > 0, then keep doing this code...
-			t -= Time.deltaTime / 0.5f; // each frame, make t smaller ( divide this by / 2f to change duration of screen shake
-			// Time.deltaTime = time last frame, usually 1/60th of a second
-			// eventually t will be less than or equal to zero
-			Vector3 shakeVector = Camera.main.transform.right * Mathf.Sin (Time.time * 50f) + 
-				Camera.main.transform.up * Mathf.Sin (Time.time * 100f); 
-			Camera.main.transform.position = cameraStart + shakeVector * t * shakePower;
-			//if (t <= 0f){
-			//	CameraZoom.isScreenShaking = false;	
-			//}
-			yield return 0;
-		}
-	}
-	
-	public IEnumerator EndGame()
+	IEnumerator EndGame ()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds (1f);
 		if (playerNumber == 1) {
-			Application.LoadLevel ("GameOver1");
+			Application.LoadLevel ("Player1WinScene");
 		} else {
-			Application.LoadLevel ("GameOver2");
+			Application.LoadLevel ("Player2WinScene");
 		}
 	}
 	
