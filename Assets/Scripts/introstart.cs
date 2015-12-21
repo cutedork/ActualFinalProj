@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class introstart : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	if (Input.GetKeyDown(KeyCode.Space)) {
-			Application.LoadLevel ("HowToPlay");
+public class IntroStart : MonoBehaviour
+{
+	void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			Application.LoadLevel ("HowToPlayScene");
 		}
 	}
 }
