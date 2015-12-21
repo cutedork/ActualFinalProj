@@ -5,26 +5,40 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+	// references to top and bottom character separately
 	public GameObject topCharacter;
 	public GameObject bottomCharacter;
+
+	// personal player number
 	public int playerNumber;
+
+	// reference to opponent
 	public Transform opponent;
+
+	// set a movespeed
+	public float movementSpeed = 32;
+
+	// particle system
+	public ParticleSystem particles;
+
+	// player key display stuff
+	public GameObject[] wasdImages;
+	public GameObject[] arrowImages;
 	Vector3 movementVector;
 	CharacterController characterController;
-	public float movementSpeed = 32; // 8
 
-	public Animator topPlayerAnimator;
-	public Animator bottomPlayerAnimator;
-	public float lastTrigger;
-	public GameObject splash;
-	float FButtonCooler = 0.5f ; // Half a second before reset
+	// animator references
+	Animator topPlayerAnimator;
+	Animator bottomPlayerAnimator;
+
+	// variables for dashing logic
+	float FButtonCooler = 0.5f ;
 	float FButtonCount = 0f;
-	float BButtonCooler = 0.5f ; // Half a second before reset
+	float BButtonCooler = 0.5f ;
 	float BButtonCount = 0f;
-	float LButtonCooler = 0.5f ; // Half a second before reset
+	float LButtonCooler = 0.5f ;
 	float LButtonCount = 0f;
-	float RButtonCooler = 0.5f ; // Half a second before reset
+	float RButtonCooler = 0.5f ;
 	float RButtonCount = 0f;
 	float maxDashTime = 0.5f;
 	float dashSpeed = 150.0f;
@@ -35,32 +49,29 @@ public class PlayerMovement : MonoBehaviour
 	bool dashB = false;
 	bool dashL = false;
 	bool dashR = false;
-	//bool playAnim;
+
+	// key mapping
 	List<KeyCode> playerKeys;
-	public ParticleSystem particles;
 
-	float mass = 3.0F; // defines the character mass
+	// define character mass
+	float mass = 3.0F;
+
+	// impact vector
 	Vector3 impact = Vector3.zero;
-
-
-	// player key stuff
-	public GameObject[] wasdImages;
-	public GameObject[] arrowImages;
 
 	void Start ()
 	{
+		// initialize
 		characterController = GetComponent<CharacterController> ();
 		topPlayerAnimator = topCharacter.GetComponent<Animator> ();
 		bottomPlayerAnimator = bottomCharacter.GetComponent<Animator> ();
 
-		//playAnim = false;
 		if (playerNumber == 1) {
 			playerKeys = new List<KeyCode> (new KeyCode[] {
 				KeyCode.W,
 				KeyCode.A,
 				KeyCode.S,
 				KeyCode.D,
-				KeyCode.R,
 				KeyCode.T
 			});
 		} else {
@@ -69,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 				KeyCode.LeftArrow,
 				KeyCode.DownArrow,
 				KeyCode.RightArrow,
-				KeyCode.LeftBracket,
 				KeyCode.Slash
 			});
 		}
@@ -80,18 +90,10 @@ public class PlayerMovement : MonoBehaviour
 	{
 		movementVector = new Vector3 (0f, movementVector.y, 0f);
 
-
-		// DEBUG STUFF 
-		//if (playerKeys == null) {
-		//	 gameObject.SetActive(false);
-		//}
-
 		if ((Input.GetKey (playerKeys [0])) || 
 			(Input.GetKey (playerKeys [1])) ||
 			(Input.GetKey (playerKeys [2])) ||
 			(Input.GetKey (playerKeys [3]))) {
-			// StartCoroutine("Walk");
-
 			bottomPlayerAnimator.SetBool ("IsWalking", true);
 		} else {
 			bottomPlayerAnimator.SetBool ("IsWalking", false);
@@ -153,23 +155,6 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 
-		//Player rotation CLOCKWISE, COUNTERCLOCKWISE
-		//if (Input.GetKey (playerKeys[4])) {
-		//	transform.Rotate(0f, 10f, 0f);
-		//}
-		//if (Input.GetKey (playerKeys[5])) {
-		//	transform.Rotate(0f, -10f, 0f);
-		//}
-
-		//Jump Logic CHECK IF GROUNDED, IF NOT APPLY JUMP POWER
-		if (characterController.isGrounded) {
-			movementVector.y = 0;
-			if (Input.GetKeyDown (playerKeys [4])) {
-				//movementVector.y = jumpPower;
-			}
-				
-		}
-
 		if (FButtonCooler > 0) {
 			FButtonCooler -= 1 * Time.deltaTime;
 		} else {
@@ -192,13 +177,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		//Attack Logic PLAY ANIMATION TO ATTACK
-		if (Input.GetKeyDown (playerKeys [5])) {
-			//playAnim = !playAnim;
-			//StartCoroutine("Attack");
+		if (Input.GetKeyDown (playerKeys [4])) {
 			topPlayerAnimator.SetTrigger ("AttackTrigger");
-			lastTrigger = Time.time;
 		} 
-		//topPlayerAnimator.SetBool ("IsAttacking", playAnim); 
 
 		//Apply final movement vector
 		if (isDashing) {
@@ -216,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
 				}
 				currentDashTime += dashStoppingSpeed;
 			} else {
-				// close trail
+				// close particles
 				particles.Stop ();
 				isDashing = false;
 				dashF = false;
@@ -224,17 +205,8 @@ public class PlayerMovement : MonoBehaviour
 				dashL = false;
 				dashR = false;
 			}
-			//else
-			//{
-			//	movementVector = Vector3.zero;
-			//}
 		}
 
-		if (Input.GetKeyDown (KeyCode.X)) {
-			AddImpact(-transform.forward, 100f);
-		}
-
-		//movementVector.y -= gravity * Time.deltaTime;
 		characterController.Move (movementVector * Time.deltaTime);
 		transform.LookAt (opponent);
 		transform.localEulerAngles = new Vector3 (0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
@@ -243,161 +215,74 @@ public class PlayerMovement : MonoBehaviour
 			characterController.Move (impact * Time.deltaTime);
 		}
 		// consumes the impact energy each cycle:
-		impact = Vector3.Lerp(impact, Vector3.zero, 5*Time.deltaTime);
+		impact = Vector3.Lerp (impact, Vector3.zero, 5 * Time.deltaTime);
 
 
 		// key images
 		if (playerNumber == 1) {
-			if (Input.GetKey (playerKeys[0])) {
-				wasdImages[0].SetActive(true);
-				wasdImages[1].SetActive(false);
-				wasdImages[2].SetActive(false);
-				wasdImages[3].SetActive(false);
-			} else if (Input.GetKey (playerKeys[1])) {
-				wasdImages[0].SetActive(false);
-				wasdImages[1].SetActive(true);
-				wasdImages[2].SetActive(false);
-				wasdImages[3].SetActive(false);
-			} else if (Input.GetKey (playerKeys[2])) {
-				wasdImages[0].SetActive(false);
-				wasdImages[1].SetActive(false);
-				wasdImages[2].SetActive(true);
-				wasdImages[3].SetActive(false);
-			} else if (Input.GetKey (playerKeys[3])) {
-				wasdImages[0].SetActive(false);
-				wasdImages[1].SetActive(false);
-				wasdImages[2].SetActive(false);
-				wasdImages[3].SetActive(true);
+			if (Input.GetKey (playerKeys [0])) {
+				wasdImages [0].SetActive (true);
+				wasdImages [1].SetActive (false);
+				wasdImages [2].SetActive (false);
+				wasdImages [3].SetActive (false);
+			} else if (Input.GetKey (playerKeys [1])) {
+				wasdImages [0].SetActive (false);
+				wasdImages [1].SetActive (true);
+				wasdImages [2].SetActive (false);
+				wasdImages [3].SetActive (false);
+			} else if (Input.GetKey (playerKeys [2])) {
+				wasdImages [0].SetActive (false);
+				wasdImages [1].SetActive (false);
+				wasdImages [2].SetActive (true);
+				wasdImages [3].SetActive (false);
+			} else if (Input.GetKey (playerKeys [3])) {
+				wasdImages [0].SetActive (false);
+				wasdImages [1].SetActive (false);
+				wasdImages [2].SetActive (false);
+				wasdImages [3].SetActive (true);
 			} else {
-				wasdImages[0].SetActive(false);
-				wasdImages[1].SetActive(false);
-				wasdImages[2].SetActive(false);
-				wasdImages[3].SetActive(false);
+				wasdImages [0].SetActive (false);
+				wasdImages [1].SetActive (false);
+				wasdImages [2].SetActive (false);
+				wasdImages [3].SetActive (false);
 			}
 		} else if (playerNumber == 2) {
-			if (Input.GetKey (playerKeys[0])) {
-				arrowImages[0].SetActive(true);
-				arrowImages[1].SetActive(false);
-				arrowImages[2].SetActive(false);
-				arrowImages[3].SetActive(false);
-			} else if (Input.GetKey (playerKeys[1])) {
-				arrowImages[0].SetActive(false);
-				arrowImages[1].SetActive(true);
-				arrowImages[2].SetActive(false);
-				arrowImages[3].SetActive(false);
-			} else if (Input.GetKey (playerKeys[2])) {
-				arrowImages[0].SetActive(false);
-				arrowImages[1].SetActive(false);
-				arrowImages[2].SetActive(true);
-				arrowImages[3].SetActive(false);
-			} else if (Input.GetKey (playerKeys[3])) {
-				arrowImages[0].SetActive(false);
-				arrowImages[1].SetActive(false);
-				arrowImages[2].SetActive(false);
-				arrowImages[3].SetActive(true);
+			if (Input.GetKey (playerKeys [0])) {
+				arrowImages [0].SetActive (true);
+				arrowImages [1].SetActive (false);
+				arrowImages [2].SetActive (false);
+				arrowImages [3].SetActive (false);
+			} else if (Input.GetKey (playerKeys [1])) {
+				arrowImages [0].SetActive (false);
+				arrowImages [1].SetActive (true);
+				arrowImages [2].SetActive (false);
+				arrowImages [3].SetActive (false);
+			} else if (Input.GetKey (playerKeys [2])) {
+				arrowImages [0].SetActive (false);
+				arrowImages [1].SetActive (false);
+				arrowImages [2].SetActive (true);
+				arrowImages [3].SetActive (false);
+			} else if (Input.GetKey (playerKeys [3])) {
+				arrowImages [0].SetActive (false);
+				arrowImages [1].SetActive (false);
+				arrowImages [2].SetActive (false);
+				arrowImages [3].SetActive (true);
 			} else {
-				arrowImages[0].SetActive(false);
-				arrowImages[1].SetActive(false);
-				arrowImages[2].SetActive(false);
-				arrowImages[3].SetActive(false);
+				arrowImages [0].SetActive (false);
+				arrowImages [1].SetActive (false);
+				arrowImages [2].SetActive (false);
+				arrowImages [3].SetActive (false);
 			}
-
 		}
-
-
-		// Debug.Log (Input.GetAxis ("LeftJoystickX"));
-		// Debug.Log (Input.GetAxis ("LeftJoystickY"));
-		/* This doesn't work as well as I hoped
-			if (Input.GetAxis ("LeftJoystickX") > 0) {
-				movementVector += -transform.right * Input.GetAxis ("LeftJoystickX") * movementSpeed * -1f;
-			} else if (Input.GetAxis ("LeftJoystickX") < 0) {
-				movementVector += transform.right * Input.GetAxis ("LeftJoystickX") * movementSpeed;
-			} else if (Input.GetAxis ("LeftJoystickY") > 0) {
-				movementVector += -transform.forward * Input.GetAxis ("LeftJoystickY") * movementSpeed;
-			} else if (Input.GetAxis ("LeftJoystickY") < 0) {
-				movementVector += transform.forward * Input.GetAxis ("LeftJoystickY") * movementSpeed * -1f;
-			}
-			*/
-		/*
-			movementVector.x = Input.GetAxis("LeftJoystickX") * movementSpeed;
-			movementVector.z = Input.GetAxis("LeftJoystickY") * movementSpeed * -1f;
-
-			if(characterController.isGrounded)
-			{
-				movementVector.y = 0;
-				
-	#if UNITY_STANDALONE_WIN
-				if(Input.GetButtonDown("A"))
-				{
-					movementVector.y = jumpPower;
-				}
-	#elif UNITY_STANDALONE_OSX
-				if (Input.GetButtonDown("A_OSX"))
-				{
-					movementVector.y = jumpPower;
-				}
-	#endif
-
-			}
-			
-			movementVector.y -= gravity * Time.deltaTime;
-			characterController.Move(movementVector * Time.deltaTime);
-
-	#if UNITY_STANDALONE_WIN
-			if (Input.GetButton ("LeftBumper")) {
-				transform.Rotate(0f, 10f, 0f);
-			}
-
-	#elif UNITY_STANDALONE_OSX
-			if (Input.GetButton ("LeftBumper_OSX")) {
-				transform.Rotate(0f, 10f, 0f);
-			}
-	#endif
-
-
-
-	#if UNITY_STANDALONE_WIN
-
-			if (Input.GetButton ("RightBumper")) {
-				transform.Rotate(0f, -10f, 0f);
-			}
-
-	#elif UNITY_STANDALONE_OSX
-			if (Input.GetButton ("RightBumper_OSX")) {
-				transform.Rotate(0f, -10f, 0f);
-			}
-	#endif
-			*/
-
 	}
 
 	// call this function to add an impact force:
-	public void AddImpact(Vector3 dir, float force){
-		dir.Normalize();
-		if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
+	public void AddImpact (Vector3 dir, float force)
+	{
+		dir.Normalize ();
+		if (dir.y < 0)
+			dir.y = -dir.y; // reflect down force on the ground
 		impact += dir.normalized * force / mass;
 
 	}
-
-	public IEnumerator Attack ()
-	{
-		
-		topPlayerAnimator.SetBool ("IsAttacking", true);
-		
-		yield return new WaitForSeconds (0.5f);
-		
-		topPlayerAnimator.SetBool ("IsAttacking", false);
-		
-	}
-
-	//public IEnumerator Walk () {
-		
-	//bottomPlayerAnimator.SetBool("IsWalking", true);
-		
-	// yield return new WaitForSeconds(0.5f);
-		
-	// bottomPlayerAnimator.SetBool("IsWalking", false);
-		
-	//}
-	
 }
