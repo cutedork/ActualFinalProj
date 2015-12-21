@@ -7,6 +7,7 @@ public class IntroStart : MonoBehaviour
 	{
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			Application.LoadLevel ("HowToPlayScene");
+		
 		}
 	}
 }
